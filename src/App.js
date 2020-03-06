@@ -18,7 +18,7 @@ onFormSubmit(e){
     e.preventDefault();
     const formData = new FormData();
     for(var i = 0; i< this.state.file.length; i++){
-      formData.append('myImages[]',this.state.file[i]);
+      formData.append('files[]',this.state.file[i]);
     }
     const config = {
         headers: {
@@ -47,7 +47,7 @@ render() {
             <p id="success">ERFOLGREICH!</p>
             }
         <div class="inputWrapper">
-            <input class="fileInput" type="file" name="myImages[]" multiple onChange= {this.onChange} />
+            <input class="fileInput" type="file" name="files[]" multiple onChange= {this.onChange} />
         </div>
             <br></br>
             {this.state.file != null &&

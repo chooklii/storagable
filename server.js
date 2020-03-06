@@ -1,11 +1,12 @@
 const cors = require('cors');
-var Express = require('express');
-var multer = require('multer');
-var bodyParser = require('body-parser');
-var app = Express();
+const Express = require('express');
+const multer = require('multer');
+const bodyParser = require('body-parser');
+const app = Express();
+const PORT = 8000;
+
 app.use(bodyParser.json());
 app.use(cors())
-const PORT = 8000;
 
 var Storage = multer.diskStorage({
   destination: function(req, file, callback) {
@@ -17,33 +18,27 @@ var Storage = multer.diskStorage({
 });
 
 function formate_date(){
-  var d = new Date()
-  var month = d.getMonth()
-  var day = d.getDate()
-  var year = d.getFullYear()
-  var minute = d.getMinutes()
-  var secound = d.getSeconds()
-  const current_date = year + "_" + month + "_" + day + "_" + minute + "_" + secound
-  return current_date
+  const d = new Date()
+  return d.getFullYear() + "_" + d.getMonth() + "_" + d.getDate() + "_" + d.getMinutes() + "_" + d.getSeconds()
 }
 
 var upload = multer({
   storage: Storage
-}).array("myImages[]")
+}).array("files[]")
 
 app.post('/upload', function(req, res){
   upload(req, res, function(err){
     if (err){
       return res.end(err)
     }
-    return res.end("ERFOLG")
+    return res.end("Upload erfolgreich!")
   })
 });
 
 app.get("/", function(req, res){
-  res.end("Hallo")
+  res.end("Express Server up and runnung")
 })
 
 app.listen(PORT, () => {
-    console.log('Listening at ' + PORT );
+    console.log('Running at ' + PORT );
 });

@@ -1,1 +1,2 @@
-export const IP_ADRESS = "YOUR_IP"
+const IP_ADRESS = "YOUR_IP"
+export default IP_ADRESS

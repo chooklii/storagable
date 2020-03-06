@@ -8,7 +8,8 @@ class App extends React.Component{
   constructor(props) {
     super(props);
     this.state ={
-        file: null
+        file: null,
+        success: false
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -26,13 +27,15 @@ onFormSubmit(e){
     };
     axios.post("http://" + IP_ADRESS + ":8000/upload",formData,config)
         .then((response) => {
-            alert("The file is successfully uploaded");
+            this.setState({success: true})
             this.setState({file: null})
         }).catch((error) => {
+        this.setState({success: true})
           alert(error)
     });
 }
 onChange(e) {
+    this.setState({success: false})
     this.setState({file:e.target.files});
 }
 
@@ -40,8 +43,11 @@ render() {
     return (
       <div id="background">
         <form onSubmit={this.onFormSubmit}>
+            {this.state.success &&
+            <p id="success">ERFOLGREICH!</p>
+            }
         <div class="inputWrapper">
-            <input class="fileInput" type="file" name="myImages[]" accept="image/*" multiple onChange= {this.onChange} />
+            <input class="fileInput" type="file" name="myImages[]" multiple onChange= {this.onChange} />
         </div>
             <br></br>
             {this.state.file != null &&

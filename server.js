@@ -9,7 +9,7 @@ const PORT = 8000;
 
 var Storage = multer.diskStorage({
   destination: function(req, file, callback) {
-      callback(null, "./public");
+      callback(null, "./saves");
   },
   filename: function(req, file, callback) {
       callback(null, formate_date() + "_" + file.originalname);
@@ -34,7 +34,7 @@ var upload = multer({
 app.post('/upload', function(req, res){
   upload(req, res, function(err){
     if (err){
-      return res.end("ERROR")
+      return res.end(err)
     }
     return res.end("ERFOLG")
   })

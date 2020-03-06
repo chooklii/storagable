@@ -31,6 +31,13 @@
   filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
 
+#success{
+  color: green;
+  font-size: larger;
+  width: 100%;
+  text-align: center;
+}
+
 #submit_button{
   width: 200px;
   height: 150px;
@@ -41,4 +48,5 @@
   border-color: da;
   color: whitesmoke;
   margin-top: 10px;
+  text-align: center;
 }

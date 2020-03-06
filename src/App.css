@@ -1,19 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+#background{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,15 +9,36 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.inputWrapper {
+  background-image: url("./upload.png");
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.fileInput {
+  cursor: pointer;
+  height: 100%;
+  position:absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  font-size:50px;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#submit_button{
+  width: 200px;
+  height: 150px;
+  margin-left: 25%;
+  font-size: larger;
+  background-color: darkred;
+  border-radius: 10%;
+  border-color: da;
+  color: whitesmoke;
+  margin-top: 10px;
 }

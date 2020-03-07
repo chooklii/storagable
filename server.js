@@ -39,6 +39,10 @@ app.get("/", function(req, res){
   res.end("Express Server up and runnung")
 })
 
+app.get("/test", function(req, res){
+  res.render("./dist/index.html")
+})
+
 app.listen(PORT, () => {
     console.log('Running at ' + PORT );
 });

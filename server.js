@@ -36,7 +36,7 @@ app.post('/upload', function(req, res){
     if (err){
       return res.end(err)
     }
-    res.sendStatus(200)
+    res.sendStatus(201)
   })
 });
 

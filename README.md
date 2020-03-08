@@ -5,6 +5,7 @@ Create own config.js just like the template with your IP-Adress
 
 Files to be saved in folder saves, can be changed within server.js
 
-to update JS-Files run "npm run build"
+to run:
 
-Run Project with "node server.js"
+"npm run build" -> builds all JS Files into one
+"node server.js" -> to run Express Server

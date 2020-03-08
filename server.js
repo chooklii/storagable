@@ -7,7 +7,7 @@ const path = require('path');
 const PORT = 8000;
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use(express.static("public"));
+app.use(express.static("/public/"));
 
 app.use(bodyParser.json());
 app.use(cors())

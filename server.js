@@ -14,7 +14,7 @@ app.use(cors())
 
 var Storage = multer.diskStorage({
   destination: function(req, file, callback) {
-      callback(null, "./saves");
+      callback(null, path.join(__dirname, 'saves'));
   },
   filename: function(req, file, callback) {
       callback(null, formate_date() + "_" + file.originalname);

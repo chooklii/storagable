@@ -1,10 +1,12 @@
 const cors = require('cors');
-const Express = require('express');
+const express = require('express');
 const multer = require('multer');
 const bodyParser = require('body-parser');
-const app = Express();
+const app = express();
+const path = require('path');
 const PORT = 8000;
 
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.json());
 app.use(cors())
 
@@ -26,6 +28,7 @@ var upload = multer({
   storage: Storage
 }).array("files[]")
 
+
 app.post('/upload', function(req, res){
   upload(req, res, function(err){
     if (err){
@@ -35,13 +38,8 @@ app.post('/upload', function(req, res){
   })
 });
 
-app.get("/", function(req, res){
-  res.end("Express Server up and runnung")
-})
-
-app.get("/test", function(req, res){
-  res.render("./dist/index.html")
-})
+app.get("/healthcheck", (req, res) => res.end("Express Server up and runnung"))
+app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/dist/index.html')));
 
 app.listen(PORT, () => {
     console.log('Running at ' + PORT );

@@ -7,6 +7,8 @@ const path = require('path');
 const PORT = 8000;
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
+app.use(express.static("public"));
+
 app.use(bodyParser.json());
 app.use(cors())
 
@@ -39,7 +41,7 @@ app.post('/upload', function(req, res){
 });
 
 app.get("/healthcheck", (req, res) => res.end("Express Server up and runnung"))
-app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/dist/index.html')));
+app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
 
 app.listen(PORT, () => {
     console.log('Running at ' + PORT );

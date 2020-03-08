@@ -36,7 +36,7 @@ app.post('/upload', function(req, res){
     if (err){
       return res.end(err)
     }
-    return res.end("Upload erfolgreich!")
+    res.sendStatus(200)
   })
 });
 

@@ -34,9 +34,12 @@ var upload = multer({
 app.post('/upload', function(req, res){
   upload(req, res, function(err){
     if (err){
+      console.log(err)
       res.sendStatus(500)
     }
+    else{
     res.sendStatus(201)
+    }
   })
 });
 

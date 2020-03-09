@@ -1,11 +1,27 @@
 # photoUploader
-Simple React Project with Express Back-End. Running on rasperry to backup Photos from the Smartphone. 
 
-Create own config.js just like the template with your IP-Adress
+React FrontEnd and Express BackEnd. FrontEnd build with Webpack and served through Express Server.
 
-Files to be saved in folder saves, can be changed within server.js
+Default folder for saves is /saves - Can be changed within server.js
 
-to run:
+# first time:
 
-"npm run build" -> builds all JS Files into one
-"node server.js" -> to run Express Server
+1. Create own config.js - Template is given inside src/
+
+2. Run "npm install" to install all dependencies (If not there install needed stuff like node and so on) 
+
+# to run:
+
+1. "run npm run build" to put all JS-Files together 
+-> Not needed, if there are no changes inside of those files
+
+2. "node server.js" to run Server
+
+# Endpoints:
+
+GET /             -> Photo-Upload Page
+
+GET /healthcheck  -> Healthcheck
+
+POST /upload      -> Endpoint for Upload
+

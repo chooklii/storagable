@@ -20,6 +20,8 @@ Default folder for saves is /saves - Can be changed within server.js
 # Endpoints:
 
 GET /             -> Photo-Upload Page
+
 GET /healthcheck  -> Healthcheck
+
 POST /upload      -> Endpoint for Upload
 

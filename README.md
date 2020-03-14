@@ -2,7 +2,7 @@
 
 React FrontEnd and Express BackEnd. FrontEnd build with Webpack and served through Express Server.
 
-Default folder for saves is /saves - Can be changed within server.js
+Default folder for saves is within usb - Can be changed within server.js
 
 # first time:
 
@@ -23,5 +23,6 @@ GET /             -> Photo-Upload Page
 
 GET /healthcheck  -> Healthcheck
 
-POST /upload      -> Endpoint for Upload
+POST /fileupload      -> Endpoint for File-Upload
+POST /photoupload      -> Endpoint for Foto-Upload
 

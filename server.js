@@ -19,7 +19,7 @@ const PhotoStorage = multer.diskStorage({
       callback(null, path.join(__dirname, '../usb/NeueFotos'));
   },
   filename: function(req, file, callback) {
-      callback(null, helper.formate_date + "_" + file.originalname);
+      callback(null, helper.format_date() + "_" + file.originalname);
   }
 });
 
@@ -28,7 +28,7 @@ const FileStorage = multer.diskStorage({
       callback(null, path.join(__dirname, '../usb/NeueDateien'));
   },
   filename: function(req, file, callback) {
-      callback(null, helper.format_date + "_" + file.originalname);
+      callback(null, helper.format_date() + "_" + file.originalname);
   }
 });
 
@@ -61,7 +61,7 @@ app.post('/photoupload', function(req, res){
 
 
 app.get("/healthcheck", function(req, res){
-  if(fs.existsSync("../usb/NeueFotos")){
+  if(fs.existsSync(path.join(__dirname, '../usb/NeueFotos'))){
     res.sendStatus(200)
   }else{
     res.sendStatus(204)

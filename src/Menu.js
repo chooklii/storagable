@@ -21,12 +21,10 @@ render() {
         <div>
             {!this.state.active &&
             <div>
-                <div id="menu4">
-                    <Healthcheck/>
-                </div>
                 <div id="menu1"></div>
                 <div id="menu2" onClick={() => this.setState({active:"2"})}></div>
                 <div id="menu3" onClick={() => this.setState({active:"4"})}></div>
+                <div id="menu4"><Healthcheck/></div>
             </div>
             }
             {this.state.active == "2" &&

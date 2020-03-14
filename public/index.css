@@ -63,7 +63,7 @@
 
 #menu1{
   float: left;
-  background-image: url("./bird.jpg");
+  background-image: url("./showfoto.jpg");
   background-size: cover;
   cursor:pointer;
   width: 100%;
@@ -91,7 +91,7 @@
 
 #menu3{
   float: left;
-  background-image: url("./data.jpg");
+  background-image: url("./datenupload.jpg");
   background-size: cover;
   cursor:pointer;
   width: 100%;
@@ -144,16 +144,21 @@
   #menu1{
     width: 100%;
     min-height: 40vh;
+    border: 2px solid black;
   }
 
   #menu2{
     width: 100%;
     min-height: 40vh;
+    margin-top: 10px;
+    border: 2px solid black;
   }
 
   #menu3{
     width: 100%;
     min-height: 40vh;
+    margin-top: 10px;
+    border: 2px solid black;
   }
 
   #menu4{

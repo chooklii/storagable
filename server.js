@@ -1,39 +1,42 @@
 const cors = require('cors');
 const express = require('express');
 const multer = require('multer');
+const fs = require("fs")
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const PORT = 8000;
+const helper = require("./functions/helper")
+
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-
 app.use(bodyParser.json());
 app.use(cors())
 
-var Storage = multer.diskStorage({
+const PhotoStorage = multer.diskStorage({
   destination: function(req, file, callback) {
-      callback(null, path.join(__dirname, '../usb'));
+      callback(null, path.join(__dirname, '../usb/NeueFotos'));
   },
   filename: function(req, file, callback) {
-      callback(null, formate_date() + "_" + file.originalname);
+      callback(null, helper.formate_date + "_" + file.originalname);
   }
 });
 
-function formate_date(){
-  const d = new Date()
-  let month = d.getMonth() +1 
-  return d.getFullYear() + "_" + month + "_" + d.getDate() + "_" + d.getMinutes() + "_" + d.getSeconds()
-}
+const FileStorage = multer.diskStorage({
+  destination: function(req, file, callback) {
+      callback(null, path.join(__dirname, '../usb/NeueDateien'));
+  },
+  filename: function(req, file, callback) {
+      callback(null, helper.format_date + "_" + file.originalname);
+  }
+});
 
-var upload = multer({
-  storage: Storage
-}).array("files[]")
+const photoupload = multer({ storage: PhotoStorage}).array("files[]")
+const fileupload = multer({storage: FileStorage}).array("files[]")
 
-
-app.post('/upload', function(req, res){
-  upload(req, res, function(err){
+app.post('/fileupload', function(req, res){
+  fileupload(req, res, function(err){
     if (err){
       console.log(err)
       res.sendStatus(500)
@@ -44,9 +47,26 @@ app.post('/upload', function(req, res){
   })
 });
 
-app.get("/healthcheck", (req, res) => res.end("Express Server up and runnung"))
-app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
-
-app.listen(PORT, () => {
-    console.log('Running at ' + PORT );
+app.post('/photoupload', function(req, res){
+  photoupload(req, res, function(err){
+    if (err){
+      console.log(err)
+      res.sendStatus(500)
+    }
+    else{
+    res.sendStatus(201)
+    }
+  })
 });
+
+
+app.get("/healthcheck", function(req, res){
+  if(fs.existsSync("../usb/NeueFotos")){
+    res.sendStatus(200)
+  }else{
+    res.sendStatus(204)
+  }
+})
+
+app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
+app.listen(PORT, () => {console.log('Running at ' + PORT )});

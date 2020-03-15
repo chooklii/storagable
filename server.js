@@ -66,7 +66,7 @@ app.post('/photoupload', function(req, res){
 });
 
 app.get("/folders", function(req, res){
-  res.send(getDirectories("../usb"))
+  res.send(getDirectories(path.join(__dirname, '../usb/')))
 })
 
 app.get("/photonames", function(req, res){

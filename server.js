@@ -37,7 +37,6 @@ const fileupload = multer({storage: FileStorage}).array("files[]")
 
 const getDirectories = source =>
   fs.readdirSync(source, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory)
     .filter(dirent => dirent.name != "NeueDateien")
     .map(dirent => dirent.name)
 

@@ -35,6 +35,12 @@ const FileStorage = multer.diskStorage({
 const photoupload = multer({ storage: PhotoStorage}).array("files[]")
 const fileupload = multer({storage: FileStorage}).array("files[]")
 
+const getDirectories = source =>
+  fs.readdirSync(source, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .filter(dirent => dirent.name != "NeueDateien")
+    .map(dirent => dirent.name)
+
 app.post('/fileupload', function(req, res){
   fileupload(req, res, function(err){
     if (err){
@@ -59,6 +65,36 @@ app.post('/photoupload', function(req, res){
   })
 });
 
+app.get("/folders", function(req, res){
+  res.send(getDirectories("../usb"))
+})
+
+app.get("/photonames", function(req, res){
+  const photosList = []
+  const folder = path.join(__dirname, '../usb/' + req.query.folder)
+  fs.readdir(folder, function(err, files){
+    if(err){
+      res.sendStatus(400)
+    }else{
+      files.forEach(function (file){
+        photosList.push(file)
+      })
+      res.send(photosList)
+    }
+  })
+})
+
+app.get("/photo", function(req, res){
+  const file = path.join(__dirname, '../usb/' + req.query.path)
+  fs.readFile(file, function(err, data){
+    if(err){
+      res.sendStatus(400)
+    }else{
+      res.write(data)
+      res.end()
+    }
+  })
+})
 
 app.get("/healthcheck", function(req, res){
   if(fs.existsSync(path.join(__dirname, '../usb/NeueFotos'))){

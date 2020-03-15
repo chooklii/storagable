@@ -184,6 +184,7 @@
 #loadButtons{
   display: flex;
   justify-content: center;
+  height: 10vh;
 }
 
 #loadMore{

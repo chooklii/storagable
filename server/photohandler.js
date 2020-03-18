@@ -1,13 +1,13 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require("fs")
-const helper = require("./functions/helper")
+const helper = require("../functions/helper")
 
 module.exports = function(app){
 
     const PhotoStorage = multer.diskStorage({
         destination: function(req, file, callback) {
-            callback(null, path.join(__dirname, '../usb/NeueFotos'));
+            callback(null, path.join(__dirname, '../../usb/NeueFotos'));
         },
         filename: function(req, file, callback) {
             callback(null, helper.format_date() + "_" + file.originalname);

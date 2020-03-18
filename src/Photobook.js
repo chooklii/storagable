@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios"
-import IP_ADRESS from "./config.js"
+import IP_ADRESS from "../config.js"
 
 class Photobook extends React.Component{
     constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios"
-import IP_ADRESS from "./config.js"
+import IP_ADRESS from "../config.js"
 
 class Photoupload extends React.Component{
 

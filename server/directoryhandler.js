@@ -10,7 +10,7 @@ module.exports = function(app){
     .map(dirent => dirent.name)
 
     app.get("/folders", function(req, res){
-  res.send(getDirectories(path.join(__dirname, '../usb/')))
+  res.send(getDirectories(path.join(__dirname, '../../usb/')))
 })
 
 }

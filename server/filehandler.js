@@ -1,6 +1,6 @@
 const multer = require('multer');
 const path = require('path');
-const helper = require("./functions/helper")
+const helper = require("../functions/helper")
 
 module.exports = function(app){
 

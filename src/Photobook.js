@@ -52,7 +52,6 @@ componentDidUpdate(){
         const only_photos_list = []
         for(var i = 0; i < photolist.length; i++){
             const ending = photolist[i].slice(photolist[i].indexOf("."), photolist[i].length)
-            console.log([".mov", ".m4v", ".mp4"].indexOf(ending))
             if([".mov", ".m4v", ".mp4"].indexOf(ending) <= 0){
                 only_photos_list.push(photolist[i])
             }

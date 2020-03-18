@@ -12,6 +12,8 @@ class Photobook extends React.Component{
             loaded: true,
             nextPhotos: [0,14]
         };
+
+        this.slice_photos = this.slice_photos.bind(this)
     }
     componentWillMount(){
         axios.get("http://" + IP_ADRESS + ":8000/folders")
@@ -29,12 +31,7 @@ componentDidUpdate(){
     if(this.state.active != null && this.state.photos.length == 0 && this.state.loaded == false){
         axios.get("http://" + IP_ADRESS + ":8000/photonames?folder=" + this.state.active)
         .then((response) => {
-            try{
-                this.setState({photos: response.data, loaded: true})
-            }
-            catch {
-                alert("Nicht möglich Fotos zu laden")
-            }
+                this.setState({photos: this.slice_photos(response.data), loaded: true})
     })
     }
 }
@@ -51,7 +48,20 @@ componentDidUpdate(){
         })
         }
 
-    display_photos(folder, slice_value, statefunction){
+    slice_photos(photolist){
+        const only_photos_list = []
+        for(var i = 0; i < photolist.length; i++){
+            const ending = photolist[i].slice(photolist[i].indexOf("."), photolist[i].length)
+            console.log([".mov", ".m4v", ".mp4"].indexOf(ending))
+            if([".mov", ".m4v", ".mp4"].indexOf(ending) <= 0){
+                only_photos_list.push(photolist[i])
+            }
+        }
+        return only_photos_list
+    }
+
+    display_photos(folder, slice_value){
+        if(this.state.photos.length > 0){
         if(this.state.photos.length <= 14){
         return this.state.photos.map(function(single){
             const image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
@@ -68,8 +78,9 @@ componentDidUpdate(){
                 <div id="photobox">
                     <img id="onephoto"src={image_url}></img>
                 </div>
-            )
-        }) 
+                )
+            }) 
+        }
     }
 }
 
@@ -95,8 +106,7 @@ render() {
         <div id="photobook">
             {this.display_photos(
                 this.state.active, 
-                this.state.nextPhotos,
-                (value) => this.setState({nextPhotos: value}))}
+                this.state.nextPhotos)}
             {this.state.photos.length > 14 &&
             <div id="loadButtons">
                 {this.state.nextPhotos[0] != 0 &&

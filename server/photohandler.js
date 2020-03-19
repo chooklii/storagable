@@ -7,7 +7,7 @@ module.exports = function(app){
 
     const PhotoStorage = multer.diskStorage({
         destination: function(req, file, callback) {
-            callback(null, path.join(__dirname, '../../usb/NeueFotos'));
+            callback(null, path.join(__dirname, '../../usb/Fotos/NeueFotos'));
         },
         filename: function(req, file, callback) {
             callback(null, helper.format_date() + "_" + file.originalname);
@@ -18,7 +18,7 @@ module.exports = function(app){
 
     app.get("/photonames", function(req, res){
         const photosList = []
-        const folder = path.join(__dirname, '../../usb/' + req.query.folder)
+        const folder = path.join(__dirname, '../../usb/Fotos/' + req.query.folder)
         console.log(folder)
         fs.readdir(folder, function(err, files){
           if(err){
@@ -34,7 +34,7 @@ module.exports = function(app){
       })
       
       app.get("/photo", function(req, res){
-        const file = path.join(__dirname, '../../usb/' + req.query.path)
+        const file = path.join(__dirname, '../../usb/Fotos/' + req.query.path)
         fs.readFile(file, function(err, data){
           if(err){
             res.sendStatus(400)

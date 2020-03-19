@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from "axios"
 import IP_ADRESS from "../config.js"
 
-class Photobook extends React.Component{
+class Filebook extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
@@ -16,20 +16,20 @@ class Photobook extends React.Component{
         this.slice_photos = this.slice_photos.bind(this)
     }
     componentWillMount(){
-        axios.get("http://" + IP_ADRESS + ":8000/photofolders")
+        axios.get("http://" + IP_ADRESS + ":8000/filefolders")
         .then((response) => {
             try{
                 this.setState({folder: response.data})
             }
             catch {
-                alert("Nicht möglich Fotos zu laden")
+                alert("Nicht möglich Dateien zu laden")
             }
     })
 }
 
 componentDidUpdate(){
     if(this.state.active != null && this.state.photos.length == 0 && this.state.loaded == false){
-        axios.get("http://" + IP_ADRESS + ":8000/photonames?folder=" + this.state.active)
+        axios.get("http://" + IP_ADRESS + ":8000/filenames?folder=" + this.state.active)
         .then((response) => {
                 this.setState({photos: this.slice_photos(response.data), loaded: true})
     })
@@ -63,19 +63,19 @@ componentDidUpdate(){
         if(this.state.photos.length > 0){
         if(this.state.photos.length <= 14){
         return this.state.photos.map(function(single){
-            const image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
+            const image_url = "http://" + IP_ADRESS + ":8000/file?path="+folder+"/"+single
             return(
                 <div id="photobox">
-                    <img id="onephoto"src={image_url}></img>
+                    <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
                 </div>
             )
         })
     }else{
         return this.state.photos.slice(slice_value[0],slice_value[1]).map(function(single){
-            const image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
+            const image_url = "http://" + IP_ADRESS + ":8000/file?path="+folder+"/"+single
             return(
                 <div id="photobox">
-                    <img id="onephoto"src={image_url}></img>
+                    <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
                 </div>
                 )
             }) 
@@ -126,4 +126,4 @@ render() {
     )
 }
 }
-export default Photobook;
+export default Filebook;

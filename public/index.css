@@ -56,59 +56,6 @@
   text-align: center;
 }
 
-#menu_element{
-  width: 100%;
-  height: 50%;
-}
-
-#menu1{
-  float: left;
-  background-image: url("./showfoto.jpg");
-  background-size: cover;
-  cursor:pointer;
-  width: 100%;
-  min-height: 40vh;
-}
-
-#menu1:hover{
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-}
-
-#menu2{
-  float: left;
-  background-image: url("./fotoupload.jpg");
-  background-size: cover;
-  cursor:pointer;
-  width: 100%;
-  min-height: 40vh;
-}
-
-#menu2:hover{
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-}
-
-#menu3{
-  float: left;
-  background-image: url("./datenupload.jpg");
-  background-size: cover;
-  cursor:pointer;
-  width: 100%;
-  min-height: 40vh;
-}
-
-#menu3:hover{
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-}
-
-#menu4{
-  float: left;
-  width: 100%;
-  min-height: 10vh;
-}
-
 #back_button{
   cursor: pointer;
   background-color: white;
@@ -181,6 +128,20 @@
   cursor: pointer;
 }
 
+#onefile{
+  width: 20vh;
+  height: 20vh;
+  cursor: pointer;
+  background-size: cover;
+  background-image: url("./file_symbol.png");
+  text-align: center;
+  color: white;
+}
+
+#hyperlink{
+  text-decoration: none;
+}
+
 #loadButtons{
   display: flex;
   justify-content: center;
@@ -198,31 +159,6 @@
 
 @media only screen and (max-width: 768px) {
 
-  #menu1{
-    width: 100%;
-    min-height: 40vh;
-    border: 2px solid black;
-  }
-
-  #menu2{
-    width: 100%;
-    min-height: 40vh;
-    margin-top: 10px;
-    border: 2px solid black;
-  }
-
-  #menu3{
-    width: 100%;
-    min-height: 40vh;
-    margin-top: 10px;
-    border: 2px solid black;
-  }
-
-  #menu4{
-    width: 100%;
-    min-height: 10vh;
-  }
-
   .inputWrapper{
     width: 50vh;
     height: 50vh;
@@ -234,32 +170,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-
-  #menu1{
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    width: 50%;
-    min-height: 50vh;
-  }
-
-  #menu2{
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    width: 50%;
-    min-height: 50vh;
-  }
-
-  #menu3{
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    width: 50%;
-    min-height: 50vh;
-  }
-
-  #menu4{
-    width: 50%;
-    min-height: 50vh;
-  }
 
   .inputWrapper{
     width: 400px;

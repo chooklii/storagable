@@ -16,7 +16,7 @@ require("./server/filehandler")(app)
 require("./server/directoryhandler")(app)
 
 app.get("/healthcheck", function(req, res){
-  if(fs.existsSync(path.join(__dirname, '../usb/NeueFotos'))){
+  if(fs.existsSync(path.join(__dirname, '../usb/Fotos/NeueFotos'))){
     res.sendStatus(200)
   }else{
     res.sendStatus(204)

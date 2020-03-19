@@ -19,7 +19,6 @@ module.exports = function(app){
       app.get("/filenames", function(req, res){
         const photosList = []
         const folder = path.join(__dirname, '../../usb/Dateien/' + req.query.folder)
-        console.log(folder)
         fs.readdir(folder, function(err, files){
           if(err){
             console.log(err)

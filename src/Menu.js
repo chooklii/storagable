@@ -3,6 +3,7 @@ import PhotoUpload from "./Photoupload";
 import Fileupload from './Fileupload';
 import Healthcheck from "./Healthcheck"
 import Photobook from "./Photobook"
+import Filebook from "./Filebook"
 
 class Menu extends React.Component{
     constructor(props) {
@@ -21,25 +22,31 @@ render() {
     return (
         <div>
             {!this.state.active &&
-            <div>
-                <div id="menu1" onClick={() => this.setState({active:"1"})}></div>
-                <div id="menu2" onClick={() => this.setState({active:"2"})}></div>
-                <div id="menu3" onClick={() => this.setState({active:"4"})}></div>
-                <div id="menu4"><Healthcheck/></div>
+            <div className="menu_box">
+                <div className="menu" onClick={() => this.setState({active:"1"})}></div>
+                <div className="menu" onClick={() => this.setState({active:"2"})}></div>
+                <div className="menu" onClick={() => this.setState({active:"3"})}></div>
+                <div className="menu" onClick={() => this.setState({active:"4"})}></div>
+                <div id="menu_info"><Healthcheck/></div>
             </div>
+            }
+            {this.state.active == "1" &&
+            <Photobook
+                return_to_menu = {() => this.return_to_menu()}
+            />
             }
             {this.state.active == "2" &&
             <PhotoUpload
                 return_to_menu = {() => this.return_to_menu()}
             />
             }
-            {this.state.active == "4" &&
-            <Fileupload
+            {this.state.active == "3" &&
+            <Filebook
                 return_to_menu = {() => this.return_to_menu()}
             />
             }
-            {this.state.active == "1" &&
-            <Photobook
+            {this.state.active == "4" &&
+            <Fileupload
                 return_to_menu = {() => this.return_to_menu()}
             />
             }

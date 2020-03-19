@@ -22,7 +22,9 @@ Default folder for saves is within usb - Can be changed within server.js
 GET /             -> Photo-Upload Page
 
 GET /healthcheck  -> Healthcheck if USB is there
-GET /folders      -> Get all folders on USB
+GET /photofolders      -> Get all Photo-Folders
+GET /filefolder        -> Get all File-Folders
+
 GET /photonames?folder=Name -> Get all File-Names for one folder
 GET /photo?path="PATH_TO_PHOTO -> Get one Foto
 

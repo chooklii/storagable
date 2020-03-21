@@ -69,9 +69,9 @@ componentDidUpdate(){
     }else{
         return this.state.photos.slice(slice_value[0],slice_value[1]).map(function(single){
             if(folder){
-                image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
+                image_url = "http://" + IP_ADRESS + ":8000/file?path="+folder+"/"+single
             }else{
-                image_url = "http://" + IP_ADRESS + ":8000/photo?path="+single
+                image_url = "http://" + IP_ADRESS + ":8000/file?path="+single
             }
             return(
                 <div id="photobox">

@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from "axios"
 import IP_ADRESS from "../config.js"
+import {slice_files, folders, settup_current_directory} from "./helper/bookhelper"
+
+const unwanted_types = [".mov", ".m4v", ".mp4", ".MOV"]
 
 class Photobook extends React.Component{
     constructor(props) {
@@ -15,14 +18,12 @@ class Photobook extends React.Component{
             menu: true,
             nextPhotos: [0,14]
         };
-
-        this.slice_photos = this.slice_photos.bind(this)
     }
     componentWillMount(){
         axios.get("http://" + IP_ADRESS + ":8000/photofolders")
         .then((response) => {
             try{
-                this.setState({folder: response.data["folders"], photos: this.slice_photos(response.data["files"])})
+                this.setState({folder: response.data["folders"], photos: slice_files(response.data["files"], unwanted_types)})
             }
             catch {
                 alert("Nicht möglich Fotos zu laden")
@@ -41,7 +42,7 @@ componentDidUpdate(){
         axios.get(url)
         .then((response) => {
             try{
-                this.setState({loaded: true, folder: response.data["folders"], photos: this.slice_photos(response.data["files"])})
+                this.setState({loaded: true, folder: response.data["folders"], photos: slice_files(response.data["files"], unwanted_types)})
             }
             catch {
                 alert("Nicht möglich Fotos zu laden")
@@ -49,29 +50,6 @@ componentDidUpdate(){
     })
     }
 }
-
-    folders(statefunction){
-        return this.state.folder.map(function(single){
-            return(
-                <div id="folderbox">
-                <div id="onefolder" onClick={() => statefunction(single)}>
-                </div>
-                <p id="foldername">{single}</p>
-                </div>
-            )
-        })
-        }
-
-    slice_photos(photolist){
-        const only_photos_list = []
-        for(var i = 0; i < photolist.length; i++){
-            const ending = photolist[i].slice(photolist[i].lastIndexOf("."), photolist[i].length)
-            if([".mov", ".m4v", ".mp4", ".MOV"].indexOf(ending) <= 0){
-                only_photos_list.push(photolist[i])
-            }
-        }
-        return only_photos_list
-    }
 
     display_photos(folder, slice_value){
         if(this.state.photos.length > 0){
@@ -127,21 +105,6 @@ componentDidUpdate(){
         }
     }
 
-    settup_current_directory(last_directory_list, new_folder){
-        var value = ""
-        for(var i = 0; i <last_directory_list.length; i++){
-            if(value != ""){
-                value += "/" + last_directory_list[i]
-            }else{
-                value = last_directory_list[i]
-            }
-        }
-        if(value != ""){
-            return value + "/" + new_folder
-        }else{
-            return new_folder
-        }
-    }
 render() {
     return (
         <div id="background">
@@ -149,18 +112,19 @@ render() {
 
         {this.state.active == null &&
         <div id="allfolders">
-        {this.folders((value) => {
+        {folders((value) => {
             if(this.state.current_directory != ""){
                 this.state.last_directory.push(this.state.current_directory)
             }
             this.setState({
-            current_directory: this.settup_current_directory(this.state.last_directory, value),
+            current_directory: settup_current_directory(this.state.last_directory, value),
             loaded: false,
             folder: [],
             photos: [],
             menu: false
                 })
-            })
+            },
+            this.state.folder)
         }
         </div>
         }

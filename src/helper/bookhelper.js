@@ -24,6 +24,7 @@ export function folders(statefunction, folders){
 }
 
 export function settup_current_directory(last_directory_list, new_folder){
+    console.log(last_directory_list, new_folder)
     var value = ""
     for(var i = 0; i <last_directory_list.length; i++){
         if(value != ""){
@@ -32,6 +33,7 @@ export function settup_current_directory(last_directory_list, new_folder){
             value = last_directory_list[i]
         }
     }
+    console.log(value)
     if(value != ""){
         return value + "/" + new_folder
     }else{

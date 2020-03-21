@@ -13,25 +13,10 @@ module.exports = function(app){
             callback(null, helper.format_date() + "_" + file.originalname);
         }
       });
-      
+
     const photoupload = multer({ storage: PhotoStorage}).array("files[]")
 
-    app.get("/photonames", function(req, res){
-        const photosList = []
-        const folder = path.join(__dirname, '../../usb/Fotos/' + req.query.folder)
-        fs.readdir(folder, function(err, files){
-          if(err){
-            console.log(err)
-            res.sendStatus(400)
-          }else{
-            files.forEach(function (file){
-              photosList.push(file)
-            })
-            res.send(photosList)
-          }
-        })
-      })
-      
+
       app.get("/photo", function(req, res){
         const file = path.join(__dirname, '../../usb/Fotos/' + req.query.path)
         fs.readFile(file, function(err, data){

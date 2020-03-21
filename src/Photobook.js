@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios"
 import IP_ADRESS from "../config.js"
-import {slice_files, folders, settup_current_directory} from "./helper/bookhelper"
+import {folders, settup_current_directory, get_file_ending} from "./helper/bookhelper"
 
 const unwanted_types = [".mov", ".m4v", ".mp4", ".MOV"]
 
@@ -23,7 +23,7 @@ class Photobook extends React.Component{
         axios.get("http://" + IP_ADRESS + ":8000/photofolders")
         .then((response) => {
             try{
-                this.setState({folder: response.data["folders"], photos: slice_files(response.data["files"], unwanted_types)})
+                this.setState({folder: response.data["folders"], photos: response.data["files"]})
             }
             catch {
                 alert("Nicht möglich Fotos zu laden")
@@ -42,7 +42,7 @@ componentDidUpdate(){
         axios.get(url)
         .then((response) => {
             try{
-                this.setState({loaded: true, folder: response.data["folders"], photos: slice_files(response.data["files"], unwanted_types)})
+                this.setState({loaded: true, folder: response.data["folders"], photos: response.data["files"]})
             }
             catch {
                 alert("Nicht möglich Fotos zu laden")
@@ -56,6 +56,15 @@ componentDidUpdate(){
         if(this.state.photos.length <= 14){
             var image_url = ""
         return this.state.photos.map(function(single){
+            const file_ending = get_file_ending(single)
+            if(unwanted_types.indexOf(file_ending) > 0){
+                image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
+                return(
+                    <div id="photobox">
+                        <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
+                    </div>
+                )
+            }else{
             if(folder){
                 image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
             }else{
@@ -64,12 +73,22 @@ componentDidUpdate(){
             return(
                 <div id="photobox">
                     <img id="onephoto"src={image_url}></img>
-                </div>
+                </div> 
             )
+            }
         })
     }else{
         return this.state.photos.slice(slice_value[0],slice_value[1]).map(function(single){
-            if(folder){
+            const file_ending = get_file_ending(single)
+            if(unwanted_types.indexOf(file_ending) > 0){
+                image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
+                return(
+                    <div id="photobox">
+                        <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
+                    </div>
+                )
+            }else{
+                if(folder){
                 image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
             }else{
                 image_url = "http://" + IP_ADRESS + ":8000/photo?path="+single
@@ -79,6 +98,7 @@ componentDidUpdate(){
                     <img id="onephoto"src={image_url}></img>
                 </div>
                 )
+            }
             })
         }
     }

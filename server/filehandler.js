@@ -15,7 +15,7 @@ module.exports = function(app){
       });
 
       const fileupload = multer({storage: FileStorage}).array("files[]")
-      
+
       app.get("/file", function(req, res){
         const file = path.join(__dirname, '../../usb/Dateien/' + req.query.path)
         fs.readFile(file, function(err, data){

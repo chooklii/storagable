@@ -36,3 +36,8 @@ export function settup_current_directory(last_directory_list, new_folder){
         return new_folder
     }
 }
+
+export function get_file_ending(file){
+    const ending = file.slice(file.lastIndexOf("."), file.length)
+    return ending
+}

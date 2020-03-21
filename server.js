@@ -8,6 +8,9 @@ const PORT = 8000;
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/Dateien', express.static(path.join(__dirname, '../usb/Dateien')));
+app.use('/Fotos', express.static(path.join(__dirname, '../usb/Fotos')));
+
 app.use(bodyParser.json());
 app.use(cors())
 

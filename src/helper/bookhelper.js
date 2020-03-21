@@ -26,7 +26,7 @@ export function folders(statefunction, folders){
 export function settup_current_directory(last_directory_list, new_folder){
     console.log(last_directory_list, new_folder)
     var value = ""
-    if(last_directory_list != []){
+    if(last_directory_list.length > 0){
         value = last_directory_list[last_directory_list.length-1]
     }
     console.log(value)

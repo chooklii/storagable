@@ -61,7 +61,7 @@ componentDidUpdate(){
                 image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
                 return(
                     <div id="photobox">
-                        <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
+                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie">{single}</div></a>
                     </div>
                 )
             }else{
@@ -84,7 +84,7 @@ componentDidUpdate(){
                 image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
                 return(
                     <div id="photobox">
-                        <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
+                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie">{single}</div></a>
                     </div>
                 )
             }else{

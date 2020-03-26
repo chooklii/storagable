@@ -23,6 +23,7 @@ module.exports = function(app){
       folders = getDirectories(path.join(__dirname, '../../usb/Fotos/'))
     }
     results = {"files": files, "folders": folders}
+    console.log(results)
     res.set({ 'content-type': 'application/json; charset=utf-8' });
     res.send(results)
   })

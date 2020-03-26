@@ -4,25 +4,27 @@ const path = require('path');
 module.exports = function(app){
 
   const getDirectories = source =>
-    fs.readdirSync(source, { withFileTypes: true })
+    fs.readdirSync(source,{ withFileTypes: true, encoding: "utf8" })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 
   const getFiles = source =>
-    fs.readdirSync(source, { withFileTypes: true })
+    fs.readdirSync(source,{ withFileTypes: true, encoding: "utf8" })
     .filter(dirent => dirent.isFile())
     .map(dirent => dirent.name)
 
 
   app.get("/photofolders", function(req, res){
     if(req.query.path){
-      files = getFiles(path.join(__dirname, '../../usb/Fotos/' + req.query.path), "utf8")
-      folders = getDirectories(path.join(__dirname, '../../usb/Fotos/' + req.query.path), "utf8")
+      files = getFiles(path.join(__dirname, '../../usb/Fotos/' + req.query.path))
+      folders = getDirectories(path.join(__dirname, '../../usb/Fotos/' + req.query.path))
     }else{
       files = getFiles(path.join(__dirname, '../../usb/Fotos/'))
       folders = getDirectories(path.join(__dirname, '../../usb/Fotos/'))
     }
+    console.log(files)
     results = {"files": files, "folders": folders}
+    console.log(results)
     res.set({ 'content-type': 'application/json; charset=utf-8' });
     res.send(results)
   })

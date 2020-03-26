@@ -19,6 +19,7 @@ module.exports = function(app){
       app.get("/file", function(req, res){
         const file = path.join(__dirname, '../../usb/Dateien/' + req.query.path)
         fs.readFile(file, function(err, data){
+          res.set({ 'content-type': 'application/json; charset=utf-8' });
           if(err){
             res.sendStatus(400)
           }else{

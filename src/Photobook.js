@@ -20,7 +20,10 @@ class Photobook extends React.Component{
         };
     }
     componentWillMount(){
-        axios.get("http://" + IP_ADRESS + ":8000/photofolders")
+        axios.get("http://" + IP_ADRESS + ":8000/photofolders", {
+            headers: {
+              charset: "utf-8"
+            }})
         .then((response) => {
             try{
                 this.setState({folder: response.data["folders"], photos: response.data["files"]})

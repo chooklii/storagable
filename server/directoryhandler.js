@@ -23,6 +23,7 @@ module.exports = function(app){
       folders = getDirectories(path.join(__dirname, '../../usb/Fotos/'))
     }
     results = {"files": files, "folders": folders}
+    res.set({ 'content-type': 'application/json; charset=utf-8' });
     res.send(results)
   })
 
@@ -35,6 +36,7 @@ module.exports = function(app){
       folders = getDirectories(path.join(__dirname, '../../usb/Dateien/'))
     }
     results = {"files": files, "folders": folders}
+    res.set({ 'content-type': 'application/json; charset=utf-8' });
     res.send(results)
 })
 }

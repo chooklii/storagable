@@ -16,14 +16,13 @@ module.exports = function(app){
 
   app.get("/photofolders", function(req, res){
     if(req.query.path){
-      files = getFiles(path.join(__dirname, '../../usb/Fotos/' + req.query.path))
-      folders = getDirectories(path.join(__dirname, '../../usb/Fotos/' + req.query.path))
+      files = getFiles(path.join(__dirname, '../../usb/Fotos/' + req.query.path), "utf8")
+      folders = getDirectories(path.join(__dirname, '../../usb/Fotos/' + req.query.path), "utf8")
     }else{
       files = getFiles(path.join(__dirname, '../../usb/Fotos/'))
       folders = getDirectories(path.join(__dirname, '../../usb/Fotos/'))
     }
     results = {"files": files, "folders": folders}
-    console.log(results)
     res.set({ 'content-type': 'application/json; charset=utf-8' });
     res.send(results)
   })

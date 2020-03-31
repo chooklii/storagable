@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios"
 import IP_ADRESS from "../config.js"
 import {folders, settup_current_directory, get_file_ending} from "./helper/bookhelper"
+import { Player } from 'video-react'
 
 const unwanted_types = [".mov", ".m4v", ".mp4", ".MOV"]
 
@@ -16,7 +17,9 @@ class Photobook extends React.Component{
             photos: [],
             loaded: true,
             menu: true,
-            nextPhotos: [0,14]
+            nextPhotos: [0,14],
+            video_active: false,
+            video_link: ""
         };
     }
     componentWillMount(){
@@ -54,7 +57,8 @@ componentDidUpdate(){
     }
 }
 
-    display_photos(folder, slice_value){
+    display_photos(folder, slice_value, show_video){
+        console.log("Display Photos", this.state.photos)
         if(this.state.photos.length > 0){
         if(this.state.photos.length <= 14){
             var image_url = ""
@@ -63,8 +67,10 @@ componentDidUpdate(){
             if(unwanted_types.indexOf(file_ending) > 0){
                 image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
                 return(
-                    <div id="photobox">
-                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie">{single}</div></a>
+                    <div id="photobox_movie">
+                        <div id="onemovie_name">{single}</div>
+                        <div onClick={(image_url) => show_video(image_url)} id="onemovie_show">Anschauen</div>
+                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie_download">Download</div></a>
                     </div>
                 )
             }else{
@@ -86,8 +92,10 @@ componentDidUpdate(){
             if(unwanted_types.indexOf(file_ending) > 0){
                 image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
                 return(
-                    <div id="photobox">
-                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie">{single}</div></a>
+                    <div id="photobox_movie">
+                        <div id="onemovie_name">{single}</div>
+                        <div id="onemovie_show">Anschauen</div>
+                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie_download">Download</div></a>
                     </div>
                 )
             }else{
@@ -133,6 +141,13 @@ render() {
         <div id="background">
         <div id="back_button" onClick={() => this.returnbutton()}></div>
 
+        {this.state.video_active &&
+        <div>
+            <Player
+            src={this.state.video_link}
+            />
+        </div>
+        }
         {this.state.active == null &&
         <div id="allfolders">
         {folders((value) => {
@@ -154,7 +169,9 @@ render() {
         <div id="photobook">
             {this.display_photos(
                 this.state.current_directory,
-                this.state.nextPhotos)}
+                this.state.nextPhotos),
+                (image_url) => this.setState({video_link: image_url, video_active: true})
+                }
             {this.state.photos.length > 14 &&
             <div id="loadButtons">
                 {this.state.nextPhotos[0] != 0 &&

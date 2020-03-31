@@ -19,7 +19,8 @@
     "react-images-upload": "^1.2.8",
     "react-scripts": "3.4.0",
     "save-file": "^2.3.1",
-    "sharp": "^0.24.1"
+    "sharp": "^0.24.1",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode production",

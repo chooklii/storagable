@@ -126,12 +126,31 @@
   cursor: pointer;
 }
 
-#onemovie{
+#onemovie_download{
   width: 20vh;
   cursor: pointer;
   background-size: cover;
   text-align: center;
   color: white;
+}
+
+#onemovie_show{
+  width: 20vh;
+  cursor: pointer;
+  background-size: cover;
+  text-align: center;
+  color: white;
+}
+
+#onemovie_name{
+  text-align: center;
+}
+
+#photobox{
+  margin-left: 10%;
+  display: inline-flex;
+  margin-top: 5%;
+  width: 20vh;
 }
 
 #onefile{

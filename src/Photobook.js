@@ -58,7 +58,6 @@ componentDidUpdate(){
 }
 
     display_photos(folder, slice_value, show_video){
-        console.log("Display Photos", this.state.photos)
         if(this.state.photos.length > 0){
         if(this.state.photos.length <= 14){
             var image_url = ""
@@ -69,7 +68,7 @@ componentDidUpdate(){
                 return(
                     <div id="photobox_movie">
                         <div id="onemovie_name">{single}</div>
-                        <div onClick={(image_url) => show_video(image_url)} id="onemovie_show">Anschauen</div>
+                        <div onClick={() => show_video("http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single)} id="onemovie_show">Anschauen</div>
                         <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie_download">Download</div></a>
                     </div>
                 )
@@ -93,10 +92,10 @@ componentDidUpdate(){
                 image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
                 return(
                     <div id="photobox_movie">
-                        <div id="onemovie_name">{single}</div>
-                        <div id="onemovie_show">Anschauen</div>
-                        <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie_download">Download</div></a>
-                    </div>
+                    <div id="onemovie_name">{single}</div>
+                    <div onClick={() => show_video("http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single)} id="onemovie_show">Anschauen</div>
+                    <a id="hyperlink" target="_blank" href={image_url}><div id="onemovie_download">Download</div></a>
+                </div>
                 )
             }else{
                 if(folder){
@@ -143,8 +142,11 @@ render() {
 
         {this.state.video_active &&
         <div>
+            <div id="close_button" onClick={() => this.setState({video_link: "", video_active: false})}></div>
             <Player
             src={this.state.video_link}
+            autoPlay
+            isFullscreen
             />
         </div>
         }
@@ -169,9 +171,11 @@ render() {
         <div id="photobook">
             {this.display_photos(
                 this.state.current_directory,
-                this.state.nextPhotos),
-                (image_url) => this.setState({video_link: image_url, video_active: true})
+                this.state.nextPhotos,
+                (video_url) => {
+                    this.setState({video_link: video_url, video_active: true})
                 }
+            )}
             {this.state.photos.length > 14 &&
             <div id="loadButtons">
                 {this.state.nextPhotos[0] != 0 &&

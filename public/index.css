@@ -67,6 +67,19 @@
   position: absolute;
 }
 
+#close_button{
+  cursor: pointer;
+  background-color: white;
+  background-image: url("./close.png");
+  background-size: cover;
+  width: 70px;
+  height: 70px;
+  margin-left: 80px;
+  margin-top: 10px;
+  border-radius: 39px;
+  position: absolute;
+}
+
 #status_ok{
   color: green
 }
@@ -146,9 +159,9 @@
   text-align: center;
 }
 
-#photobox{
+#photobox_movie{
   margin-left: 10%;
-  display: inline-flex;
+  display: inline-block;
   margin-top: 5%;
   width: 20vh;
 }

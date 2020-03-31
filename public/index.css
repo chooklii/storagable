@@ -67,6 +67,19 @@
   position: absolute;
 }
 
+#close_button{
+  cursor: pointer;
+  background-color: white;
+  background-image: url("./close.png");
+  background-size: cover;
+  width: 70px;
+  height: 70px;
+  margin-left: 80px;
+  margin-top: 10px;
+  border-radius: 39px;
+  position: absolute;
+}
+
 #status_ok{
   color: green
 }
@@ -126,12 +139,31 @@
   cursor: pointer;
 }
 
-#onemovie{
+#onemovie_download{
   width: 20vh;
   cursor: pointer;
   background-size: cover;
   text-align: center;
   color: white;
+}
+
+#onemovie_show{
+  width: 20vh;
+  cursor: pointer;
+  background-size: cover;
+  text-align: center;
+  color: white;
+}
+
+#onemovie_name{
+  text-align: center;
+}
+
+#photobox_movie{
+  margin-left: 10%;
+  display: inline-block;
+  margin-top: 5%;
+  width: 20vh;
 }
 
 #onefile{

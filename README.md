@@ -15,19 +15,6 @@ Default folder for saves is within usb - Can be changed within server.js
 1. "run npm run build" to put all JS-Files together 
 -> Not needed, if there are no changes inside of those files
 
-2. "node server.js" to run Server
+2. "node server.js" to run Server on localhost:8000
 
-# Endpoints:
-
-GET /             -> Photo-Upload Page
-
-GET /healthcheck  -> Healthcheck if USB is there
-GET /photofolders      -> Get all Photo-Folders
-GET /filefolder        -> Get all File-Folders
-
-GET /photonames?folder=Name -> Get all File-Names for one folder
-GET /photo?path="PATH_TO_PHOTO -> Get one Foto
-
-POST /fileupload      -> Endpoint for File-Upload
-POST /photoupload      -> Endpoint for Foto-Upload
 

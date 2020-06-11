@@ -86,7 +86,7 @@ settup_display_name(name){
     }else{
         return this.state.photos.slice(slice_value[0],slice_value[1]).map(function(single){
             const file_ending = get_file_ending(single)
-            if(unwanted_types.indexOf(file_ending) <= 0){s
+            if(unwanted_types.indexOf(file_ending) <= 0){
                 image_url = "http://" + IP_ADRESS + ":8000/Dateien/"+folder+"/"+single
             }else if(folder){
                 image_url = "http://" + IP_ADRESS + ":8000/file?path="+folder+"/"+single

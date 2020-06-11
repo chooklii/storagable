@@ -56,7 +56,15 @@ componentDidUpdate(){
     }
 }
 
-    display_photos(folder, slice_value){
+settup_display_name(name){
+    for(var i = 0; i<=5; i++ ){
+        var index_underslash = name.indexOf("_")
+        name = name.substring(index_underslash+1, name.length)
+    }
+    return name
+}
+
+    display_photos(folder, slice_value, set_name){
         if(this.state.photos.length > 0){
         if(this.state.photos.length <= 14){
             var image_url = ""
@@ -71,14 +79,14 @@ componentDidUpdate(){
             }
             return(
                 <div id="photobox">
-                    <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
+                    <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{set_name(single)}</div></a>
                 </div>
             )
         })
     }else{
         return this.state.photos.slice(slice_value[0],slice_value[1]).map(function(single){
             const file_ending = get_file_ending(single)
-            if(unwanted_types.indexOf(file_ending) <= 0){
+            if(unwanted_types.indexOf(file_ending) <= 0){s
                 image_url = "http://" + IP_ADRESS + ":8000/Dateien/"+folder+"/"+single
             }else if(folder){
                 image_url = "http://" + IP_ADRESS + ":8000/file?path="+folder+"/"+single
@@ -87,7 +95,7 @@ componentDidUpdate(){
             }
             return(
                 <div id="photobox">
-                    <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{single}</div></a>
+                    <a id="hyperlink" target="_blank" href={image_url}><div id="onefile">{set_name(single)}</div></a>
                 </div>
                 )
             })
@@ -142,7 +150,8 @@ render() {
         <div id="photobook">
             {this.display_photos(
                 this.state.current_directory,
-                this.state.nextPhotos)}
+                this.state.nextPhotos,
+                (name) => this.settup_display_name(name))}
             {this.state.photos.length > 14 &&
             <div id="loadButtons">
                 {this.state.nextPhotos[0] != 0 &&

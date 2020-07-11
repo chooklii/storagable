@@ -16,9 +16,10 @@ module.exports = function(app){
       });
     
     const settupName = (name) => {
-        name.replace("ä","a")
-        name.replace("ü","u")
-        name.replace("ö","o")
+        name.replace("ä","ae")
+        name.replace("ü","ue")
+        name.replace("ö","oe")
+        name.replace("ß", "ss")
         return name
     }
 

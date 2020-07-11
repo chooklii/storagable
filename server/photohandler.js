@@ -10,9 +10,18 @@ module.exports = function(app){
             callback(null, path.join(__dirname, '../../usb/Fotos/NeueFotos'));
         },
         filename: function(req, file, callback) {
-            callback(null, helper.format_date() + "_" + file.originalname);
+          const nameWithoutUTF = settupName(file.originalname)
+            callback(null, helper.format_date() + "_" + nameWithoutUTF);
         }
       });
+
+      const settupName = (name) => {
+        const ae = name.replace("ä","ae")
+        const ue = ae.replace("ü","ue")
+        const oe = ue.replace("ö","oe")
+        const ss = oe.replace("ß", "ss")
+        return ss
+      }
 
     const photoupload = multer({ storage: PhotoStorage}).array("files[]")
 

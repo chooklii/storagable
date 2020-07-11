@@ -11,16 +11,16 @@ module.exports = function(app){
         },
         filename: function(req, file, callback) {
             const fileNameWithoutUTFValues = settupName(file.originalname)
-            callback(null, helper.format_date() + "_" + file.originalname);
+            callback(null, helper.format_date() + "_" + fileNameWithoutUTFValues);
         }
       });
     
     const settupName = (name) => {
-        name.replace("ä","ae")
-        name.replace("ü","ue")
-        name.replace("ö","oe")
-        name.replace("ß", "ss")
-        return name
+        const ae = name.replace("ä","ae")
+        const ue = ae.replace("ü","ue")
+        const oe = ue.replace("ö","oe")
+        const ss = oe.replace("ß", "ss")
+        return ss
     }
 
       const fileupload = multer({storage: FileStorage}).array("files[]")

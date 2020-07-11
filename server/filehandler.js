@@ -10,9 +10,17 @@ module.exports = function(app){
             callback(null, path.join(__dirname, '../../usb/Dateien/NeueDateien'));
         },
         filename: function(req, file, callback) {
+            const fileNameWithoutUTFValues = settupName(file.originalname)
             callback(null, helper.format_date() + "_" + file.originalname);
         }
       });
+    
+    const settupName = (name) => {
+        name.replace("ä","a")
+        name.replace("ü","u")
+        name.replace("ö","o")
+        return name
+    }
 
       const fileupload = multer({storage: FileStorage}).array("files[]")
 

@@ -17,6 +17,7 @@
     "react-dropzone": "^10.2.1",
     "react-image-upload": "0.0.1",
     "react-images-upload": "^1.2.8",
+    "react-player": "^2.6.0",
     "react-scripts": "3.4.0",
     "save-file": "^2.3.1",
     "sharp": "^0.24.1",

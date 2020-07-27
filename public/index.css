@@ -78,6 +78,7 @@
   margin-top: 10px;
   border-radius: 39px;
   position: absolute;
+  z-index: 10000;
 }
 
 #status_ok{

@@ -14,8 +14,8 @@ module.exports = function(app){
             callback(null, helper.format_date() + "_" + fileNameWithoutUTFValues);
         }
       });
-    
-    const settupName = (name) => {
+
+      const settupName = (name) => {
         const ae = name.replace("ä","ae")
         const ue = ae.replace("ü","ue")
         const oe = ue.replace("ö","oe")

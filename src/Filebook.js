@@ -15,7 +15,7 @@ class Filebook extends React.Component{
             photos: [],
             loaded: true,
             menu: true,
-            nextPhotos: [0,14]
+            nextPhotos: [0,14],
         };
     }
     componentWillMount(){
@@ -57,12 +57,10 @@ componentDidUpdate(){
 }
 
 settup_display_name(name){
-    console.log(name)
     for(var i = 0; i<=5; i++ ){
         var index_underslash = name.indexOf("_")
         name = name.substring(index_underslash+1, name.length)
     }
-    console.log(name)
     return name
 }
 

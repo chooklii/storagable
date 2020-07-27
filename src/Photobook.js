@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios"
 import IP_ADRESS from "../config.js"
 import {folders, settup_current_directory, get_file_ending} from "./helper/bookhelper"
-import { Player } from 'video-react'
+import ReactPlayer from "react-player"
 
 const unwanted_types = [".mov", ".m4v", ".mp4", ".MOV"]
 
@@ -143,13 +143,16 @@ render() {
         {this.state.video_active &&
         <div>
             <div id="close_button" onClick={() => this.setState({video_link: "", video_active: false})}></div>
-            <Player
-            src={this.state.video_link}
-            autoPlay
-            isFullscreen
+            <ReactPlayer
+            url={this.state.video_link}
+            playing={true}
+            controls={true}
+            style={{padding: "100px"}}
             />
         </div>
         }
+        {!this.state.video_active && 
+        <div>
         {this.state.active == null &&
         <div id="allfolders">
         {folders((value) => {
@@ -191,6 +194,8 @@ render() {
             </div>
             }
         </div>
+        </div>
+        }
         </div>
     )
 }

@@ -57,10 +57,12 @@ componentDidUpdate(){
 }
 
 settup_display_name(name){
+    console.log(name)
     for(var i = 0; i<=5; i++ ){
         var index_underslash = name.indexOf("_")
         name = name.substring(index_underslash+1, name.length)
     }
+    console.log(name)
     return name
 }
 

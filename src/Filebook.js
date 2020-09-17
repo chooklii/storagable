@@ -120,7 +120,7 @@ settup_display_name(name){
                 this.setState({menu: true})
             }
         }else{
-            this.props.return_to_menu()
+            window.location.href = "http://" + window.location.host
         }
     }
 

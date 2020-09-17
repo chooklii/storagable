@@ -41,7 +41,7 @@ onChange(e) {
 render() {
     return (
         <div id="background">
-        <div id="back_button" onClick={() => this.props.return_to_menu()}></div>
+        <div id="back_button" onClick={() => window.location.href = "http://" + window.location.host}></div>
         <div id="background_center">
         <form onSubmit={this.onFormSubmit}>
             {this.state.success &&

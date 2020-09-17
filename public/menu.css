@@ -2,35 +2,39 @@
     width: 100%;
     height: 50%;
   }
-  
+
 .menu{
     float: left;
-    background-size: cover;
     cursor:pointer;
     width: 100%;
     min-height: 40vh;
-}
+    display: grid;
+  }
 
 .menu:hover{
     -webkit-filter: grayscale(0%);
-    filter: grayscale(0%);  
+    filter: grayscale(0%);
 }
-.menu_box .menu:nth-child(1){
-    background-image: url("./showfoto.jpg");
-}
-
-.menu_box .menu:nth-child(2){
-    background-image: url("./fotoupload.jpg");
+.photos{
+  background-size: cover;
+  background-image: url("./showfoto.jpg");
 }
 
-.menu_box .menu:nth-child(3){
-    background-image: url("./showfile.jpg");
+.photoupload{
+  background-size: cover;
+  background-image: url("./fotoupload.jpg");
 }
 
-.menu_box .menu:nth-child(4){
-    background-image: url("./fileupload.jpg");
+.data{
+  background-size: cover;
+  background-image: url("./showfile.jpg");
 }
-  
+
+.dataupload{
+  background-size: cover;
+  background-image: url("./fileupload.jpg");
+}
+
 #menu_info{
   float: left;
   width: 100%;
@@ -59,7 +63,7 @@
       width: 50%;
       min-height: 50vh;
     }
-   
+
     #menu_info{
       width: 50%;
       min-height: 50vh;

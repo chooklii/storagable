@@ -26,5 +26,5 @@ app.get("/healthcheck", function(req, res){
   }
 })
 
-app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
+app.get('/*', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
 app.listen(PORT, () => {console.log('Running at ' + PORT )});

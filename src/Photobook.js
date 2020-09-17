@@ -74,9 +74,9 @@ componentDidUpdate(){
                 )
             }else{
             if(folder){
-                image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
+                image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
             }else{
-                image_url = "http://" + IP_ADRESS + ":8000/photo?path="+single
+                image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
             }
             return(
                 <div id="photobox">
@@ -99,9 +99,9 @@ componentDidUpdate(){
                 )
             }else{
                 if(folder){
-                image_url = "http://" + IP_ADRESS + ":8000/photo?path="+folder+"/"+single
+                image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
             }else{
-                image_url = "http://" + IP_ADRESS + ":8000/photo?path="+single
+                image_url = "http://" + IP_ADRESS + ":8000/Fotos/"+folder+"/"+single
             }
             return(
                 <div id="photobox">
@@ -131,7 +131,7 @@ componentDidUpdate(){
                 this.setState({menu: true})
             }
         }else{
-            this.props.return_to_menu()
+            window.location.href = "http://" + window.location.host
         }
     }
 

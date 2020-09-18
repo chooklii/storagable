@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios"
-import IP_ADRESS from "../config.js"
+import {FULL_ROUTE} from "../config.js"
 
 class Healthcheck extends React.Component{
 
@@ -12,7 +12,7 @@ class Healthcheck extends React.Component{
   }
 
   componentWillMount(){
-        axios.get("http://" + IP_ADRESS + ":8000/healthcheck")
+        axios.get(FULL_ROUTE + "/healthcheck")
         .then((response) => {
             if(response.status == 200){
                 this.setState({status: "active"})

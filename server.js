@@ -16,7 +16,7 @@ app.use(cors())
 
 require("./server/photohandler")(app)
 require("./server/filehandler")(app)
-require("./server/directoryhandler")(app)
+require("./server/options")(app)
 
 app.get("/healthcheck", function(req, res){
   if(fs.existsSync(path.join(__dirname, '../usb/Fotos/NeueFotos'))){

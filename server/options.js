@@ -18,7 +18,8 @@ module.exports = function (app) {
     results = {
       "files": files,
       "folders": dirs,
-      "previousPath": prev_path
+      "previousPath": prev_path,
+      "currentPath": req.query.path
     }
     res.set({
       'content-type': 'application/json; charset=utf-8'
@@ -86,6 +87,9 @@ module.exports = function (app) {
     return (req_path && slash) ? req_path.substring(0, slash) : null
   }
 
+  // string is settup like this: xy/test/
+  // and we want the xy/
+  // go through all indexes of / and return second to last one - if it is not given return last
   function get_slash_index(string){
     const all_indexes = []
     while(string.indexOf("/") != -1){

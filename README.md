@@ -32,3 +32,12 @@ files: [1.pdf]
 folders: [Private]
 }
 ```
+
+
+`/upload`
+
+upload files from post body to folder from path
+
+Parameter:
+
+?path="PATH_TO_FOLDER

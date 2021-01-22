@@ -1,8 +1,10 @@
+const { transformFileAsync } = require("@babel/core");
 const fs = require("fs")
 const path = require('path');
 const helper = require("./helper");
+const config = require("./config")
 
-const path_to_dir = '../../usb/'
+const path_to_dir = config.PATH_TO_DIR
 
 
 // handles the requests for file and folder options from FE
@@ -10,11 +12,13 @@ const path_to_dir = '../../usb/'
 module.exports = function (app) {
 
   app.get("/options", function (req, res) {
-    const req_path = settup_req_path(req.query.path, path_to_dir)
+    const req_path = helper.settupRequestPath(req.query.path, path_to_dir)
+    const prev_path = settup_prev_path(req.query.path)
     const { files, dirs } = get_files_and_dirs(req_path)
     results = {
       "files": files,
-      "folders": dirs
+      "folders": dirs,
+      "previousPath": prev_path
     }
     res.set({
       'content-type': 'application/json; charset=utf-8'
@@ -76,9 +80,18 @@ module.exports = function (app) {
     }
   }
 
-  function settup_req_path(req_path, dir_path) {
-    // settup path depeding on if req_path is given or not
-    return req_path ? path.join(__dirname, dir_path + req_path + "/") : path.join(__dirname, dir_path)
 
+  function settup_prev_path(req_path){
+    const slash = get_slash_index(req_path)
+    return (req_path && slash) ? req_path.substring(0, slash) : null
+  }
+
+  function get_slash_index(string){
+    const all_indexes = []
+    while(string.indexOf("/") != -1){
+      all_indexes.push(string.lastIndexOf("/"))
+      string = string.substring(0, string.lastIndexOf("/"))
+    }
+    return all_indexes[1] ? all_indexes[1] : all_indexes[0]
   }
 }

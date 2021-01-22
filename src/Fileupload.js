@@ -24,7 +24,7 @@ class Fileupload extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         };
-        axios.post(FULL_ROUTE + "/fileupload", formData, config)
+        axios.post(FULL_ROUTE + "/upload?path=Dateien", formData, config)
             .then((response) => {
                 this.setState({ success: true })
                 this.setState({ file: null })

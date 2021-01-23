@@ -11,7 +11,7 @@ module.exports = function(app){
     app.post("/folder", function(req, res){
         // settup path
         const req_path = helper.settupRequestPath(req.query.path, path_to_dir)
-        create_folder(req_path) ? res.status(200).send : res.status(409).send()
+        create_folder(req_path) ? res.status(201).send() : res.status(409).send()
 
     })
 

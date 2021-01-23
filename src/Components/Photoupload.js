@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from "axios"
-import { FULL_ROUTE, HTTP_METHOD } from "../config"
+import { FULL_ROUTE, HTTP_METHOD } from "../../config.js"
 
-class Fileupload extends React.Component {
+class Photoupload extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,18 +24,18 @@ class Fileupload extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         };
-        axios.post(FULL_ROUTE + "/upload?path=Dateien", formData, config)
-            .then((response) => {
-                this.setState({ success: true })
-                this.setState({ file: null })
+        axios.post(FULL_ROUTE + "/photoupload", formData, config)
+            .then(() => {
+                this.setState({ success: true, file: null })
             }).catch((error) => {
                 this.setState({ success: true })
                 alert(error)
             });
     }
+
+
     onChange(e) {
-        this.setState({ success: false })
-        this.setState({ file: e.target.files });
+        this.setState({ success: false, file: e.target.files })
     }
 
     render() {
@@ -60,4 +60,4 @@ class Fileupload extends React.Component {
         )
     }
 }
-export default Fileupload;
+export default Photoupload;

@@ -29,7 +29,7 @@ module.exports = function (app) {
 
   function fix_name(names, pfad) {
     var changed_file = false
-    // go through all given directories and photos
+    // go through all given directories and photos 
     names.map(singleFile => {
       // check if name needs to be changed
       const newName = helper.settupName(singleFile)

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios"
-import { FULL_ROUTE, HTTP_METHOD } from "../config.js"
-import { folders, settup_current_directory, get_file_ending } from "./helper/bookhelper"
+import { FULL_ROUTE, HTTP_METHOD } from "../../config.js"
+import { folders, settup_current_directory, get_file_ending } from "./bookhelper"
 import ReactPlayer from "react-player"
 
 const unwanted_types = [".mov", ".m4v", ".mp4", ".MOV"]

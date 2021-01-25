@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
 
     settupName: function (name) {
-        return name.replace("ä", "ae").replace("ü", "ue").replace("ö", "oe").replace("ß", "ss").replace("@", "(at)")
+        return name.replace("ä", "ae").replace("ü", "ue").replace("ö", "oe").replace("ß", "ss").replace("@", "(at)".replace("?","_"))
     },
 
     format_date: function () {

@@ -7,8 +7,7 @@ const path = require('path');
 const PORT = 8000;
 
 // not beautiful, but we are going to expose all of our storage to our local network
-app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/docs', express.static(path.join(__dirname, 'docs')));
 app.use('/Dateien', express.static(path.join(__dirname, '../usb/Dateien')));
 app.use('/Fotos', express.static(path.join(__dirname, '../usb/Fotos')));
 
@@ -30,5 +29,5 @@ app.get("/healthcheck", function(req, res){
   }
 })
 
-app.get('/*', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
+app.get('/*', (req, res, next) => res.sendFile(path.join(__dirname, '/docs/index.html')));
 app.listen(PORT, () => {console.log('Running at ' + PORT )});

@@ -31,5 +31,9 @@ module.exports = {
           filename: "style.css",
           path: path.resolve(__dirname, "docs")
         })
-      ]
+      ],
+      output: {
+        filename: "bundle.js",
+        path: path.resolve(__dirname, "docs")
+      }
   };

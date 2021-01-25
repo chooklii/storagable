@@ -1,5 +1,4 @@
 const fs = require("fs")
-const path = require('path');
 const helper = require("./helper");
 const config = require("./config")
 const path_to_dir = config.PATH_TO_DIR

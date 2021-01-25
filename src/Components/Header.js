@@ -20,11 +20,11 @@ class Header extends React.Component {
 
     // icon to navigate back to last page
     // if their is no last page dont render it
-    renderBackIcon(prevPath) {
-        if (prevPath) {
+    renderBackIcon(currentPath) {
+        if (currentPath) {
             return (
                 <div onClick={() => this.props.loadPreviusOptions()} className="header-button back">
-                    <FontAwesomeIcon className="header-icon" icon={faArrowCircleLeft} />
+                    <FontAwesomeIcon className="font-icon" icon={faArrowCircleLeft} />
                 </div>)
         } else {
             return (
@@ -61,12 +61,13 @@ class Header extends React.Component {
         for (var i = 0; i < files.length; i++) {
             formData.append('files[]', files[i]);
         }
-        axios.post(FULL_ROUTE + `/upload?path=${currentPath}`,{
+        axios.post(FULL_ROUTE + `/upload?path=${currentPath}`,formData, {
             headers: {
                 "content-type": "multipart/form-data"
             }
         }).then((response) => {
             this.setState({files: null, uploadSuccess: true})
+            this.props.loadCurrentOptions()
         }).catch((error) => {
             console.log(error)
             alert("Fehler beim Upload")
@@ -80,7 +81,7 @@ class Header extends React.Component {
 
     // used to handle display of upload "popup"
     displayUpload(){
-        this.setState({upload: !this.state.upload, folder: false})
+        this.setState({upload: !this.state.upload, folder: false, uploadSuccess: false})
     }
 
     // Create Folder Form
@@ -103,7 +104,7 @@ class Header extends React.Component {
     displayUploadForm(){
         return(
             <div className="folder-name-box">
-                <input className="upload-file input" type="file" name="files[]" onChange={this.handleUploadedFiles}/>
+                <input className="upload-file input" multiple type="file" name="files[]" onChange={this.handleUploadedFiles}/>
                 <div className="upload-file text">Datei auswählen</div>
                 <button className="button-submit upload" onClick={() => this.uploadFiles(this.props.currentPath)}>Upload</button>
                 {this.state.uploadSuccess && <div className="upload-success">Upload erfolgreich!</div>}
@@ -118,14 +119,14 @@ class Header extends React.Component {
         return (
             <div>
             <div className="header">
-                {this.renderBackIcon(prevPath)}
+                {this.renderBackIcon(currentPath)}
 
                 <div onClick={() => this.displayFolder()} className="header-button folder">
-                    <FontAwesomeIcon className="header-icon" icon={faFolderPlus} />
+                    <FontAwesomeIcon className="font-icon" icon={faFolderPlus} />
                 </div>
 
                 <div onClick={() => this.displayUpload()} className="header-button upload">
-                    <FontAwesomeIcon className="header-icon" icon={faFileUpload} />
+                    <FontAwesomeIcon className="font-icon" icon={faFileUpload} />
                 </div>
 
             </div>

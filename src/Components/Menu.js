@@ -2,7 +2,8 @@ import React from 'react';
 import axios from "axios"
 import {FULL_ROUTE} from "../config"
 import Header from "./Header"
-
+import Folders from "./Folders"
+import Files from "./Files"
 
 class Menu extends React.Component {
     constructor(props){
@@ -55,6 +56,14 @@ class Menu extends React.Component {
                 loadPreviusOptions={() => this.loadPreviusOptions()}
                 loadCurrentOptions={() => this.loadOptions(currentPath)}
                 />
+                <div className="content">
+                <Folders
+                folder={folder}
+                loadOptions={(foldername) => this.loadOptions(currentPath + "/" + foldername)}/>
+                <Files
+                currentPath={currentPath}
+                files={files}/>
+                </div>
             </div>
         )
     }

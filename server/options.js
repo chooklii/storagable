@@ -84,7 +84,7 @@ module.exports = function (app) {
 
   function settup_prev_path(req_path){
     const slash = get_slash_index(req_path)
-    return (req_path && slash) ? req_path.substring(0, slash) : null
+    return (req_path && slash) ? req_path.substring(0, slash) : ""
   }
 
   // string is settup like this: xy/test/

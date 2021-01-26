@@ -13,7 +13,8 @@ class Files extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            files: 20
+            files: 20,
+            more: true
         }
     }
     renderFiles(files) {
@@ -71,7 +72,7 @@ class Files extends React.Component {
         const amound_files = this.props.files.length
         const {files} = this.state
         if(files + 20 < amound_files) this.setState({files: files+20})
-        else this.setState({files: amound_files})
+        else this.setState({files: amound_files, more: false})
     }
 
     render() {
@@ -81,7 +82,7 @@ class Files extends React.Component {
             <div className="files">
                 {amound_photos < 20 && this.renderFiles(this.props.files)}
                 {amound_photos > 20 && this.renderFiles(this.props.files.slice(0,this.state.files))}
-                {amound_photos > 20 && <button className="button_show_more" onClick={() => this.showMorePhotos()}>Mehr anzeigen</button>}
+                {(amound_photos > 20 && this.state.more) && <button className="button_show_more" onClick={() => this.showMorePhotos()}>Mehr anzeigen</button>}
             </div>
 
         )

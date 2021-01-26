@@ -1,10 +1,12 @@
 import React from 'react';
-import Menu from "./Menu"
+import {Menu} from "./Components"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import PhotoUpload from "./Photoupload";
-import Fileupload from './Fileupload';
-import Photobook from "./Photobook"
-import Filebook from "./Filebook"
+import "../static/style-mobile.css";
+import "../static/style-desktop.css";
+import "../static/style-tablet.css";
+import "../static/style-tablet-large.css";
+import "../static/style-general.css";
+
 
 class App extends React.Component {
 
@@ -15,18 +17,6 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/">
                             <Menu />
-                        </Route>
-                        <Route exact path="/photos/upload">
-                            <PhotoUpload />
-                        </Route>
-                        <Route exact path="/data/upload">
-                            <Fileupload />
-                        </Route>
-                        <Route exact path="/photos">
-                            <Photobook />
-                        </Route>
-                        <Route exact path="/data">
-                            <Filebook />
                         </Route>
                     </Switch>
                 </div>

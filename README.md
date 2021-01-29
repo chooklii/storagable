@@ -1,12 +1,25 @@
-# Storagable 
+# Storagable
 
 Storagable (Storage + accessable) is an Node-Application which enables you to access all of your hard disc through a Web application e.g. on your phone.
 
+|![Image Home](static/Images/home.png) |
+|:--:|
+| *Home |
+
+
 You are also able to upload files and photos from your every device possible and create folders through the Application.
+
+|![Image Home](static/Images/ordner.png) |
+|:--:|
+| *Ordner erstellen |
+
+|![Image Home](static/Images/upload.png) |
+|:--:|
+| *Datei hochladen |
 
 This enables you to quickly backup your photos to your hard desk without having to plug your phone.
 
-## Technology 
+## Technology
 
 Storagable uses an React Front-End with an Express Back-End. The Front-End is build with Webpack and served from the Express-Server.
 
@@ -82,6 +95,6 @@ POST `/folder`
 
 creates a new folder on given path
 
-Query-Parameter: 
+Query-Parameter:
 
 path=PATH_TO_DOR

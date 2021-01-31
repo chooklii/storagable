@@ -37,7 +37,7 @@ class Header extends React.Component {
     // function called to create a folder at current directory
     createFolder(currentPath){
         const folderName = this.folderName.value
-        axios.post(FULL_ROUTE + `/folder?path=${currentPath+folderName}`, {
+        axios.post(FULL_ROUTE + `/folder?path=${currentPath + "/" + folderName}`, {
             headers: {
                 charset: "utf-8"
             }

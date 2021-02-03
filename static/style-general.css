@@ -88,6 +88,7 @@ body{
     width: 40%;
     margin-left: 2.5%;
     padding: 2.5%;
+    cursor: pointer;
     text-align: center;
 }
 
@@ -114,6 +115,7 @@ body{
     width: 40%;
     margin-left: 2.5%;
     padding: 2.5%;
+    cursor: pointer;
     height: 100px;
     text-align: center;
 }

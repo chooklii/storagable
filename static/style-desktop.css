@@ -1,0 +1,14 @@
+@media screen and (min-width: 1025px) {
+
+    .upload-file{
+        width: 70%;
+        top: 89px;
+        position: absolute;
+        padding: 15px 32px;
+    }
+
+    .button-submit.upload{
+        margin-left: 80%;
+    }
+
+}

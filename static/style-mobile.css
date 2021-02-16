@@ -1,0 +1,17 @@
+
+@media screen and (max-width: 480px) {
+
+
+    .button-submit.upload{
+    margin-right: 2em;
+    float: right
+    }
+
+    .upload-file{
+    width: 40%;
+    top: 89px;
+    position: absolute;
+    padding: 15px 32px;
+    }
+
+}

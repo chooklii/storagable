@@ -4,18 +4,18 @@ Storagable (Storage + accessable) is an Node-Application which enables you to ac
 
 |![Image Home](static/Images/home.png) |
 |:--:|
-| *Home |
+| Home |
 
 
 You are also able to upload files and photos from your every device possible and create folders through the Application.
 
 |![Image Home](static/Images/ordner.png) |
 |:--:|
-| *Ordner erstellen |
+| Ordner erstellen |
 
 |![Image Home](static/Images/upload.png) |
 |:--:|
-| *Datei hochladen |
+| Datei hochladen |
 
 This enables you to quickly backup your photos to your hard desk without having to plug your phone.
 

@@ -7,7 +7,7 @@ const path = require('path');
 const PORT = 8000;
 
 // not beautiful, but we are going to expose all of our storage to our local network
-app.use('/docs', express.static(path.join(__dirname, 'docs')));
+app.use('/', express.static(path.join(__dirname, 'docs')));
 app.use('/Dateien', express.static(path.join(__dirname, '../usb/Dateien')));
 app.use('/Fotos', express.static(path.join(__dirname, '../usb/Fotos')));
 

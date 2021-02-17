@@ -19,6 +19,9 @@ You are also able to upload files and photos from your every device possible and
 
 This enables you to quickly backup your photos to your hard desk without having to plug your phone.
 
+If you want to you can enable FTP_Backup which leads to your data beeing saved at 
+two places. It will enable storagable to upload your data to your local FTP Server.
+
 ## Technology
 
 Storagable uses an React Front-End with an Express Back-End. The Front-End is build with Webpack and served from the Express-Server.
@@ -27,13 +30,24 @@ Storagable uses an React Front-End with an Express Back-End. The Front-End is bu
 
 Bevor starting the application create a `config.js` inside of the `server` folder and also inside of the `src` folder. Both come with templates and have following structure
 
+If you dont want to backup your data at an FTP-Server disable FTP_Backup and ignore the other FTP_ Parameters. If not fill in your auth-data.
+
 `server/config.js`
 
 ```
 const PATH_TO_DIR = "../../usb/"
-
+const FTP_Backup = true
+const FTP_HOST = ""
+const FTP_USER = ""
+const FTP_PASSWORD = ""
+const FTP_BASE_PATH = ""
 module.exports =  {
-    PATH_TO_DIR
+    PATH_TO_DIR,
+    FTP_Backup,
+    FTP_HOST,
+    FTP_USER,
+    FTP_PASSWORD,
+    FTP_BASE_PATH
 }
 ```
 

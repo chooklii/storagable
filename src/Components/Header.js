@@ -105,9 +105,12 @@ class Header extends React.Component {
     displayUploadForm(){
         return(
             <div className="folder-name-box">
+                {!this.state.uploadSuccess && <div>
                 <input className="upload-file input" multiple type="file" name="files[]" onChange={this.handleUploadedFiles}/>
                 <div className="upload-file text">Datei auswählen</div>
                 <button className="button-submit upload" onClick={() => this.uploadFiles(this.props.currentPath)}>Upload</button>
+                </div>
+                }
                 {this.state.uploadSuccess && <div className="upload-success">Upload erfolgreich!</div>}
             </div>
 

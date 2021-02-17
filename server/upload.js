@@ -28,6 +28,9 @@ module.exports = function (app) {
       if (err) {
         res.sendStatus(500)
       } else {
+        if(config.FTP_Backup){
+        helper.ftp_mkfile(req, req.query.path)
+        }
         res.sendStatus(201)
       }
     })

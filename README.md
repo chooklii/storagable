@@ -32,6 +32,8 @@ Bevor starting the application create a `config.js` inside of the `server` folde
 
 If you dont want to backup your data at an FTP-Server disable FTP_Backup and ignore the other FTP_ Parameters. If not fill in your auth-data.
 
+The FTP_BASE_PATH is the starting point of the ftp-server for our backup. This allows you to set an sub-directory of your ftp-server only for backups of this application
+
 `server/config.js`
 
 ```

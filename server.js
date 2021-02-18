@@ -8,8 +8,7 @@ const PORT = 8000;
 
 // not beautiful, but we are going to expose all of our storage to our local network
 app.use('/', express.static(path.join(__dirname, 'docs')));
-app.use('/Dateien', express.static(path.join(__dirname, '../usb/Dateien')));
-app.use('/Fotos', express.static(path.join(__dirname, '../usb/Fotos')));
+app.use('/', express.static(path.join(__dirname, '../usb')));
 
 app.use(bodyParser.json());
 app.use(cors())

@@ -53,18 +53,23 @@ module.exports =  {
 }
 ```
 
+ALLOW_HOME_UPLOAD is an Boolean if an upload on the highest path should be possible
+
 `src/config.js`
 
 ```
 const IP_ADRESS = "IP_ADRESS"
-const PORT = "8000"
+const PORT = ":8000"
 const HTTP_METHOD = "http://"
 const FULL_ROUTE = HTTP_METHOD + IP_ADRESS + PORT
-export default {
+const ALLOW_HOME_UPLOAD = false
+
+export {
     IP_ADRESS,
     PORT,
     HTTP_METHOD,
-    FULL_ROUTE
+    FULL_ROUTE,
+    ALLOW_HOME_UPLOAD
 }
 ```
 

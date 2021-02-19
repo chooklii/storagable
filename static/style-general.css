@@ -7,7 +7,8 @@ body{
     display: inline-flex;
     background-color: #3a80f2;
     position: fixed;
-    z-index: 100
+    z-index: 100;
+    min-height: 80px;
 }
 
 .content{

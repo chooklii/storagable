@@ -1,8 +1,9 @@
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleLeft, faFolderPlus, faFileUpload } from "@fortawesome/free-solid-svg-icons";
-import {FULL_ROUTE} from "../config"
+import {FULL_ROUTE, ALLOW_HOME_UPLOAD} from "../config"
 import axios from "axios";
+import { config } from "@fortawesome/fontawesome-svg-core";
 // Header used to display back, create folder and upload file option
 // takes prevPath and currentPath as parameter from props
 class Header extends React.Component {
@@ -117,6 +118,31 @@ class Header extends React.Component {
         )
     }
 
+    renderUploadIcon(path){
+        if(path || ALLOW_HOME_UPLOAD){
+            return(
+                <div onClick={() => this.displayFolder()} className="header-button folder">
+                    <FontAwesomeIcon className="font-icon" icon={faFolderPlus} />
+                </div>
+            )
+        }else(
+            <div className="header-button folder"></div>
+        )
+    }
+
+    renderFolderIcon(path){
+        if(path || ALLOW_HOME_UPLOAD){
+            return(
+                <div onClick={() => this.displayUpload()} className="header-button upload">
+                    <FontAwesomeIcon className="font-icon" icon={faFileUpload} />
+                </div>
+            )
+        }else(
+            <div className="header-button upload"></div>
+        )
+
+    }
+
     render() {
         const { prevPath, currentPath } = this.props
         const {folder, upload, uploadSuccess} = this.state
@@ -124,14 +150,9 @@ class Header extends React.Component {
             <div>
             <div className="header">
                 {this.renderBackIcon(currentPath)}
-
-                <div onClick={() => this.displayFolder()} className="header-button folder">
-                    <FontAwesomeIcon className="font-icon" icon={faFolderPlus} />
-                </div>
-
-                <div onClick={() => this.displayUpload()} className="header-button upload">
-                    <FontAwesomeIcon className="font-icon" icon={faFileUpload} />
-                </div>
+                {this.renderFolderIcon(currentPath)}
+                {this.renderUploadIcon(currentPath)}
+    
 
             </div>
             {folder && this.displayFolderNameForm()}

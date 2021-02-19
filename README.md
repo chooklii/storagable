@@ -34,6 +34,8 @@ If you dont want to backup your data at an FTP-Server disable FTP_Backup and ign
 
 The FTP_BASE_PATH is the starting point of the ftp-server for our backup. This allows you to set an sub-directory of your ftp-server only for backups of this application
 
+SHOW_CONFIG_FILES -> If Config-Files with Point at the beginning of the file-name should be shown
+
 `server/config.js`
 
 ```
@@ -43,13 +45,16 @@ const FTP_HOST = ""
 const FTP_USER = ""
 const FTP_PASSWORD = ""
 const FTP_BASE_PATH = ""
+const SHOW_CONFIG_FILES = false
+
 module.exports =  {
     PATH_TO_DIR,
     FTP_Backup,
     FTP_HOST,
     FTP_USER,
     FTP_PASSWORD,
-    FTP_BASE_PATH
+    FTP_BASE_PATH,
+    SHOW_CONFIG_FILES
 }
 ```
 

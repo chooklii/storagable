@@ -67,9 +67,12 @@ module.exports = function (app) {
 
   function get_files_and_dirs(req_path) {
     // return all dirs and fotos from given path
-    const files = get_files(req_path)
+    var files = get_files(req_path)
     const dirs = get_dirs(req_path)
     // if their name needed to be changed reload all options
+    if(!config.SHOW_CONFIG_FILES){
+      files = files.filter(x => x.charAt(0) != ".")
+    }
     if (fix_name(files, req_path) || fix_name(dirs, req_path)) {
       return {
         files: files.map(x => this.settupName(x)),

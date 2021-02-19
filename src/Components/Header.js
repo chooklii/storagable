@@ -24,7 +24,10 @@ class Header extends React.Component {
     renderBackIcon(currentPath) {
         if (currentPath) {
             return (
-                <div onClick={() => this.props.loadPreviusOptions()} className="header-button back">
+                <div onClick={() => {
+                    this.setState({uploadSuccess: false, upload: false, folder: false})
+                    this.props.loadPreviusOptions()}
+                 } className="header-button back">
                     <FontAwesomeIcon className="font-icon" icon={faArrowCircleLeft} />
                 </div>)
         } else {
@@ -118,7 +121,7 @@ class Header extends React.Component {
         )
     }
 
-    renderUploadIcon(path){
+    renderFolderIcon(path){
         if(path || ALLOW_HOME_UPLOAD){
             return(
                 <div onClick={() => this.displayFolder()} className="header-button folder">
@@ -130,7 +133,7 @@ class Header extends React.Component {
         )
     }
 
-    renderFolderIcon(path){
+    renderUploadIcon(path){
         if(path || ALLOW_HOME_UPLOAD){
             return(
                 <div onClick={() => this.displayUpload()} className="header-button upload">
